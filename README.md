@@ -7,13 +7,15 @@ ___
 Bloggit is a social media blogging website. Create, share, comment, explore!
 
 ___
+## Goal For Project
+My goal is to get more comfortable utilizing Python and Django. As of the start of this project, I don't have any personal works utilizing these two specific technologies. My hope is learn to become a better Python & Django developer through the help of this project.
+
+___
 ## Installation Instructions
 1. Fork and clone the repository
 2. Run `pip3 install -r requirements.txt` in your terminal to install dependencies
 3. Run `python3 manage.py runserver` in your terminal and go to your browser and type in "localhost:8000"
-<!-- 3. Run `createdb the-travel-buddy` in your terminal to create a database
-4. Run `sequelize db:migrate` in your terminal to create the tables in the database -->
-
+4. ...
 
 ___
 ## User Stories
