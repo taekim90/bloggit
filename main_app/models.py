@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class User(models.Model):
@@ -10,11 +11,18 @@ class Blog(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     content = models.TextField()
-    time = models.DateTimeField(null=True)
+    # image = models.BinaryField()
+    # time = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    last_updated_on = models.DateTimeField(auto_now=True)
+
 
 class Comment(models.Model):
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
     comment = models.TextField()
-    time = models.DateTimeField()
+    # time = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    last_updated_on = models.DateTimeField(auto_now=True)
+
 
 
