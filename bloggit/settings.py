@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'bloggit.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'blogit',
+        'NAME': 'bloggit',
     }
 }
 

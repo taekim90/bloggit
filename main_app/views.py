@@ -24,7 +24,7 @@ def explore(request):
 def blog(request):
     # print('Blog Page', Blog.objects.all())
     # return HttpResponse('<h1>Blog Page</h1>')
-    blogs = Blog.objects.all()
+    blogs = Blog.objects.filter(user_id=request.user.id)
     return render(request, 'blogs_list.html', {'blogs': blogs})
 
 @login_required(login_url='/login/')
@@ -54,7 +54,11 @@ def edit_blog(request, pk):
 
 @login_required(login_url='/login/')
 def delete_blog(request, pk):
-    Blog.objects.get(pk=pk).delete()
+    # Blog.objects.get(pk=pk).delete()
+    blog = Blog.objects.get(pk=pk)
+    if blog.user_id == request.user.id:
+        blog.delete()
+    print(blog, request.user, 'REQUEST')
     return redirect('blogs')
 
 def login_page(request):

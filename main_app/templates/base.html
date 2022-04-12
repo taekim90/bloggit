@@ -14,8 +14,8 @@
             <ul>
                 <li><a href="{% url 'explore' %}">Explore All Blogs</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="{% url  'profile' %}">Profile</a></li>
-                    <li><a href="{% url  'blogs' %}">My Blogs</a></li>
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <li><a href="{% url 'blogs' %}">My Blogs</a></li>
                     <li><a href="{% url 'create_blog_form' %}">New Blog</a></li>
                     <li><a href="{% url 'logout' %}">Logout</a></li>
                 {% else %}
