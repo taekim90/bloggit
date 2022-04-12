@@ -1,4 +1,4 @@
-# Bloggit
+# BlogIt
 
 ## Deployed Link
 

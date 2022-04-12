@@ -1,16 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
 <div>
     <h2>
         Blog List
-        <a href="create">(+)</a>
     </h2>
+    <a href="create">Create New Blog</a>
     <ul>
         {% for blog in blogs %}
-            <li>
-                {{ blog.user.username }},
-                {{ blog.title }},
-                {{ blog.content }}
+            <h4>
+                {{ blog.user.username }} - 
+                <a href="{{ blog.id }}/edit">
+                    {{ blog.title }} -
+                </a>
+                {{ blog.content }} - 
                 {{ blog.created_at }}
-            </li>
+                <a href="{{ blog.id }}/delete">X</a>
+            </h4>
         {% endfor %}
     </ul>
 </div>
+{% endblock %}
