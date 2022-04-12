@@ -46,8 +46,9 @@ ___
 | GET | /blogs | Page with all blogs displayed
 | GET | /blogs/create | Page with template/form to create blog
 | POST | /blogs/create | Create a new blog
-| POST | /blogs/:id/edit | Edit a blog
-| Delete | /blogs/:id/edit | Delete a blog
+| GET | /blogs/:id | Page to edit blog
+| PUT | /blogs/:id | Edit a blog
+| Delete | /blogs/:id | Delete a blog
 
 
 ## ERDs

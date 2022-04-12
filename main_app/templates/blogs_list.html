@@ -1,0 +1,16 @@
+<div>
+    <h2>
+        Blog List
+        <a href="create">(+)</a>
+    </h2>
+    <ul>
+        {% for blog in blogs %}
+            <li>
+                {{ blog.user.username }},
+                {{ blog.title }},
+                {{ blog.content }}
+                {{ blog.time }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
