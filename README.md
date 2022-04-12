@@ -51,7 +51,7 @@ ___
 
 
 ## ERDs
-![ERD image]()
+![ERD image](blog.drawio.png)
 ___
 
 ## Wireframes
