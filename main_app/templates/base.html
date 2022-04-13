@@ -18,8 +18,8 @@
                     <li><a href="{% url 'blogs' %}">My Blogs</a></li>
                     <li><a href="{% url 'create_blog_form' %}">New Blog</a></li>
                     <li><a href="{% url 'logout' %}">Logout</a></li>
-                s{% else %}
-                    <li><a href="{% url 'signup_form' %}">Signup</a></li>
+                {% else %}
+                    <li><a href="{% url 'signup' %}">Signup</a></li>
                     <li><a href="{% url 'login' %}">Login</a></li>
                 {% endif %}
             </ul>

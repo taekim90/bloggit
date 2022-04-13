@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <h1>{{ header }}</h1>
+    <h2>
+        {{ blog.title }}
+    </h2>
+    <a href="create">Add Comment</a>
+    <ul>
+        {% for comment in comments %}
+            <h4>
+                {{ comment.comment }} - 
+            </h4>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

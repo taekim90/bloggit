@@ -2,10 +2,12 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+# from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm
 
 from .models import Blog
 from .create_blog import BlogForm
-from .create_user_form import SignUpForm
+# from .create_user_form import NewUserForm
 
 
 # Create your views here.
@@ -22,11 +24,16 @@ def explore(request):
     return render(request, 'explore_list.html', {'blogs': blogs})
 
 @login_required(login_url='/login/')
-def blog(request):
+def blogs(request):
     # print('Blog Page', Blog.objects.all())
     # return HttpResponse('<h1>Blog Page</h1>')
     blogs = Blog.objects.filter(user_id=request.user.id)
     return render(request, 'blogs_list.html', {'blogs': blogs})
+
+@login_required(login_url='/login/')
+def single_blog(request):
+    blog = Blog.objects.filter(blog_id=request.blog.id)
+    return render(request, 'blog_post.html', {'blog': blog})
 
 @login_required(login_url='/login/')
 def create_blog(request):
@@ -79,14 +86,28 @@ def logout_view(request):
     logout(request)
     return redirect('home')
 
-def register(request):
+# def register_page(request):
+#     return render(request, 'register.html')
+
+# def register_request(request):
+# 	if request.method == "POST":
+# 		form = NewUserForm(request.POST)
+# 		if form.is_valid():
+# 			user = form.save()
+# 			login(request, user)
+# 			messages.success(request, "Registration successful." )
+# 			return redirect("/blogs")
+# 		messages.error(request, "Unsuccessful registration. Invalid information.")
+# 	form = NewUserForm()
+# 	return render (request=request, template_name="register.html", context={"register_form":form})
+
+def signup(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid:
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
             user = form.save()
-            user = authenticate(username=user.username, password=user.password)
             login(request, user)
-            return redirect('profile')
+            return redirect('home')
     else:
-        form = SignUpForm()
-    return render(request, 'register.html', {'form': form})
+        form = UserCreationForm()
+        return render(request, 'signup.html', {'form': form})

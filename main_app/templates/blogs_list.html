@@ -9,11 +9,13 @@
         {% for blog in blogs %}
             <h4>
                 {{ blog.user.username }} - 
-                <a href="{{ blog.id }}/edit">
+                {{ blog.title }} -
+                <a href="{{ blog.id }}">
                     {{ blog.title }} -
                 </a>
                 {{ blog.content }} - 
                 {{ blog.created_at }}
+                <a href="{{ blog.id }}/edit">Edit</a>
                 <a href="{{ blog.id }}/delete">X</a>
             </h4>
         {% endfor %}
