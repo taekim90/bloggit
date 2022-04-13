@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Blog
 from .create_blog import BlogForm
+from .create_user_form import SignUpForm
 
 
 # Create your views here.
@@ -31,7 +32,7 @@ def blog(request):
 def create_blog(request):
     if request.method == 'POST':
         form = BlogForm(request.POST)
-        form.instance.usr = request.user
+        form.instance.user = request.user
         if form.is_valid():
             blog = form.save()
             return redirect('blogs')
@@ -77,3 +78,15 @@ def profile_show(request):
 def logout_view(request):
     logout(request)
     return redirect('home')
+
+def register(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid:
+            user = form.save()
+            user = authenticate(username=user.username, password=user.password)
+            login(request, user)
+            return redirect('profile')
+    else:
+        form = SignUpForm()
+    return render(request, 'register.html', {'form': form})
