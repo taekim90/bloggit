@@ -5,23 +5,22 @@
     <h2>
         All Bloggs
     </h2>
-    <ul>
+    <div>
         {% for blog in blogs %}
-            <li>
-                <a href="/blogs/{{ blog.id }}">{{ blog.title }}</a> - {{ blog.user.username }}
-                <div>
-                    {{ blog.content|safe }}
-                </div>          
-                Created : {{ blog.created_at }}
+            <div class="border space">
+                <a href="/blogs/{{ blog.id }}">{{ blog.title }}</a>
+                <div>{{ blog.content|safe }}</div>  
+                <div>{{ blog.user.username }}</div>
+                <div>Published - {{ blog.created_at }}</div>
                 {% if user.is_authenticated %}
                     {% if user.id == blog.user.id %}    
-                        <a href="/blogs/{{ blog.id }}/edit">Edit</a>
-                        <a href="/blogs/{{ blog.id }}/delete">Delete</a>
+                        <a href="/blogs/{{ blog.id }}/edit" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="/blogs/{{ blog.id }}/delete" class="btn btn-danger btn-sm">Delete</a>
                     {% endif %}
                 {% endif %}
-            </li>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 </div>
 {% endblock %}
 

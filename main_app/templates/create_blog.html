@@ -2,14 +2,16 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-    <div>
-        <h2>Create New Blog</h2>
-            <form method = "POST">
+<h2>Create New Blog</h2>
+    <div class="space">
+        <form method = "POST">
+            <div class="mb-3">
                 {% csrf_token %}
                 {{ form.media }}
                 {{ form.as_p }}
-                <button type="submit">Post</button>
-            </form>
+                <button type="submit" class="btn btn-success">Post</button>
+            </div>
+        </form>
     </div>
 
     <script>

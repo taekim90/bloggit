@@ -3,19 +3,19 @@
 <div>
     <h2>My Blog List</h2>
     <!-- <a href="create">Create New Blog</a> -->
-    <ul>
+    <div class="space">
         {% for blog in blogs %}
-            <li>
+            <div class="border">
                 <a href="{{ blog.id }}">{{ blog.title }}</a>
                 <div>
                     <!-- {{ blog.content|slice:":255"|safe }} -->
                     {{ blog.content|safe }}
                 </div>
                 Created : {{ blog.created_at }} 
-                <a href="{{ blog.id }}/edit">Edit</a>
-                <a href="{{ blog.id }}/delete">Delete</a>
-            </li>
+                <a href="{{ blog.id }}/edit" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{{ blog.id }}/delete" class="btn btn-danger btn-sm">Delete</a>
+            <div>
         {% endfor %}
-    </ul>
+    </div>
 </div>
 {% endblock %}
