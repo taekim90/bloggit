@@ -5,13 +5,15 @@
     <a href="create">Create New Blog</a>
     <ul>
         {% for blog in blogs %}
-            <h4>
-                <a href="{{ blog.id }}">{{ blog.title }}</a><br/>
-                {{ blog.content }}<br/> 
-                {{ blog.created_at }}
+            <li>
+                <a href="{{ blog.id }}">{{ blog.title }}</a>
+                <div>
+                    {{ blog.content }}
+                </div>
+                Created : {{ blog.created_at }} -
                 <a href="{{ blog.id }}/edit">Edit</a>
                 <a href="{{ blog.id }}/delete">Delete</a>
-            </h4>
+            </li>
         {% endfor %}
     </ul>
 </div>

@@ -8,10 +8,11 @@
         {% for blog in blogs %}
             <li>
                 {{ blog.user.username }},
-                <a href="{% url 'blogs' %}">{{ blog.title }}</a><br/>          
-                {{ blog.content }}
-                {{ blog.created_at }}
-
+                <a href="{% url 'blogs' %}">{{ blog.title }}</a>
+                <div>
+                    {{ blog.content }}
+                </div>          
+                Created : {{ blog.created_at }}
                 {% if user.is_authenticated %}
                     {% if user.id == blog.user.id %}    
                         <a href="{{ blog.id }}/edit">Edit</a>

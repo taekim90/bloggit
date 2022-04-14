@@ -16,7 +16,7 @@ def home(request):
     return render(request, 'home.html')
 
 def explore(request):
-    blogs = Blog.objects.all()
+    blogs = Blog.objects.all().order_by('-created_at')
     return render(request, 'explore_list.html', {'blogs': blogs})
 
 # def explore_blog(request, pk):
@@ -25,7 +25,7 @@ def explore(request):
 
 @login_required(login_url='/login/')
 def blogs(request):
-    blogs = Blog.objects.filter(user_id=request.user.id)
+    blogs = Blog.objects.filter(user_id=request.user.id).order_by('-created_at')
     return render(request, 'blogs_list.html', {'blogs': blogs})
 
 @login_required(login_url='/login/')
