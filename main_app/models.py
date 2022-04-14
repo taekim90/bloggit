@@ -18,7 +18,7 @@ class Blog(models.Model):
     content = RichTextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     last_updated_on = models.DateTimeField(auto_now=True)
-    image = models.ImageField(null=True, blank=True, upload_to="images/")
+    # image = models.ImageField(null=True, blank=True, upload_to="images/")
 
     def __str__(self):
         return self.title
