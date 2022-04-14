@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 # class User(models.Model):
@@ -13,7 +14,8 @@ from django.contrib.auth.models import User
 class Blog(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blogs', default=None)
     title = models.CharField(max_length=100)
-    content = models.TextField()
+    # content = models.TextField()
+    content = RichTextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     last_updated_on = models.DateTimeField(auto_now=True)
 

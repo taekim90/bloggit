@@ -2,15 +2,15 @@
 {% block content %}
 <div>
     <h2>My Blog List</h2>
-    <a href="create">Create New Blog</a>
+    <!-- <a href="create">Create New Blog</a> -->
     <ul>
         {% for blog in blogs %}
             <li>
                 <a href="{{ blog.id }}">{{ blog.title }}</a>
                 <div>
-                    {{ blog.content }}
+                    {{ blog.content|slice:":255"|safe }}
                 </div>
-                Created : {{ blog.created_at }} -
+                Created : {{ blog.created_at }} 
                 <a href="{{ blog.id }}/edit">Edit</a>
                 <a href="{{ blog.id }}/delete">Delete</a>
             </li>

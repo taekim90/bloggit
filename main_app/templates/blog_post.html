@@ -4,7 +4,8 @@
     <h2>
         {{ blog.title }}
     </h2>
-    <h4>By {{ blog.user }}</h3>
+    <h4>By {{ blog.user }}</h4>
+    <p>{{ blog.content|safe }}</p>
     {% if user.is_authenticated %}
         {% if user.id == blog.user.id %}
             <div>
