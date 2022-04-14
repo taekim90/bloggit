@@ -6,22 +6,41 @@
     </h2>
     <h4>By {{ blog.user }}</h4>
     <p>{{ blog.content|safe }}</p>
-    {% if user.is_authenticated %}
-        {% if user.id == blog.user.id %}
-            <div>
-                <a href="edit">Edit</a>
-                <a href="delete">Delete</a>
-            </div>
-        {% endif %}
 
-        <a href="comment">Add Comment</a>
+    {% if user.id == blog.user.id %}
+        <div>
+            <a href="edit">Edit</a>
+            <a href="delete">Delete</a>
+        </div>
     {% endif %}
-    <ul>
-        {% for comment in comments %}
-            <h4>
-                {{ comment.comment }} - 
-            </h4>
-        {% endfor %}
-    </ul>
+
+    <h4>Comments</h4>
+
+    {% if user.is_authenticated %}
+        <form method="POST">
+            <label for="comment">Comment: </label>
+            <input id="comment" type="text" name="comment">
+            <button type="submit">Post</button>
+        </form>
+        <!-- <a href="comment">Add Comment</a> -->
+    {% endif %}
+
+    {% if not blog.comments.all %}
+        No Comments Yet
+        <a href="#">Add Comment</a>
+    {% else %}
+        <ul>
+            {% for comment in blog.comments.all %}
+                <div>
+                    {{ comment.comment}}
+                </div>
+                <p>
+                    {{ comment.name }} - {{ comment.created_at }}
+                </p>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
 </div>
 {% endblock %}

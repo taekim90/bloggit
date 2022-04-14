@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 # imported os for the media root
-import os
+# import os
 
 from pathlib import Path
 
