@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <div>
     <h2>{{ blog.title }}</h2>
-    <h4>By {{ blog.user }}</h4>
+    <p>- {{ blog.user }}</p>
     <p>{{ blog.content|safe }}</p>
 
     {% if user.id == blog.user.id %}
@@ -12,22 +13,23 @@
         </div>
     {% endif %}
 
-    <h4>Comments</h4>
 
+    <h3 class="top-space">Comments</h3>
     {% if not blog.comments.all %}
         <p>No Comments Yet</p>
     {% else %}
-        <div>
-            {% for comment in blog.comments.all %}
+        {% for comment in blog.comments.all %}
+            <div class="small-space">
                 <div>{{ comment.comment}}</div>
-                <p>{{ comment.user }} - {{ comment.created_at }}</p>
-                {% if user.is_authenticated %}
-                    {% if user.id == comment.user.id %}    
-                        <a href="delete_comment/{{ comment.id }}" class="btn btn-danger btn-sm">Delete</a>
+                <p>{{ comment.user }} - {{ comment.created_at }}
+                    {% if user.is_authenticated %}
+                        {% if user.id == comment.user.id %}    
+                            <a href="delete_comment/{{ comment.id }}" class="btn btn-danger btn-sm ">Delete</a>
+                        {% endif %}
                     {% endif %}
-                {% endif %}
-            {% endfor %}
-        </div>
+                </p>
+            </div>
+        {% endfor %}
     {% endif %}
 
     <h4>Add Comment</h4>

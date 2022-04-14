@@ -4,7 +4,7 @@
 
 ___
 ## About
-Bloggit is a social media blogging website. Create, share, comment, explore!
+BloggIt is a social media blogging website. Create, share, comment, explore!
 
 ___
 ## Goal For Project

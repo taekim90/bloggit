@@ -4,8 +4,8 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
-h2 {
-    /* color: pink; */
+h1, h2 {
+    padding: 2rem 0rem 0rem 0rem;
 }
 
 .flex {
@@ -15,9 +15,28 @@ h2 {
 }
 
 .border {
-    border: 5px solid black
+    border: 5px solid black;
 }
 
 .space {
-    padding: 3rem
+    padding: 3rem;
 }
+
+.small-space {
+    padding: 0rem 0rem 2rem 0rem;
+}
+
+.top-space {
+    padding: 3rem 0rem 0rem 0rem;
+}
+
+a {
+    color: #000000;
+    text-decoration: none;
+    /* font-size: 2rem */
+}
+
+.big-font {
+    font-size: 2rem;
+}
+

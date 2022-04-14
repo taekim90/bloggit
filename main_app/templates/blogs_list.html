@@ -1,21 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <div>
     <h2>My Blog List</h2>
-    <!-- <a href="create">Create New Blog</a> -->
-    <div class="space">
+    <div>
         {% for blog in blogs %}
-            <div class="border">
-                <a href="{{ blog.id }}">{{ blog.title }}</a>
-                <div>
-                    <!-- {{ blog.content|slice:":255"|safe }} -->
-                    {{ blog.content|safe }}
-                </div>
-                Created : {{ blog.created_at }} 
-                <a href="{{ blog.id }}/edit" class="btn btn-warning btn-sm">Edit</a>
-                <a href="{{ blog.id }}/delete" class="btn btn-danger btn-sm">Delete</a>
+            <div class="border space">
+                <a href="{{ blog.id }}" class="big-font">{{ blog.title }}</a>
+                <div>{{ blog.content|safe }}</div>
+                <div>{{ blog.created_at }}</div>
+                {% if user.is_authenticated %}
+                    {% if user.id == blog.user.id %}    
+                        <a href="{{ blog.id }}/edit" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{{ blog.id }}/delete" class="btn btn-danger btn-sm">Delete</a>
+                    {% endif %}
+                {% endif %}
             <div>
         {% endfor %}
     </div>
 </div>
 {% endblock %}
+
+<!-- {{ blog.content|slice:":255"|safe }} -->
