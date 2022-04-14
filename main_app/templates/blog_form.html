@@ -1,15 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
-<section>
-    {% if user.is_authenticated %}
 
-    <h1>Create A Blog</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Post</button>
-    </form>
+{% if user.is_authenticated %}
+    <div>
+        <h1>Create A Blog</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Post</button>
+        </form>
+    </div>
 
-    {% endif %}
-</section>
+    <script>
+        let name = "{{ user.id }}"
+        // let name = "{{ user.username }}";;
+        document.getElementById("user").value = name;
+    </script>
+{% else %}
+Please log in
+{% endif %}
+
 {% endblock %}

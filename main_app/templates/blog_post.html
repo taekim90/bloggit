@@ -1,15 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
 <div>
-  
-    current user: {{ user.id }}
-    blog's owner: {{ blog.user.id }}
-
     <h2>
         {{ blog.title }}
     </h2>
     <h4>By {{ blog.user }}</h3>
     {% if user.is_authenticated %}
+        {% if user.id == blog.user.id %}
+            <div>
+                <a href="edit">Edit</a>
+                <a href="delete">Delete</a>
+            </div>
+        {% endif %}
+
         <a href="comment">Add Comment</a>
     {% endif %}
     <ul>
