@@ -21,16 +21,12 @@ def explore(request):
     blogs = Blog.objects.all().order_by('-created_at')
     return render(request, 'explore_list.html', {'blogs': blogs})
 
-# def explore_blog(request, pk):
-#     blog = Blog.objects.get(pk=pk)
-#     return render(request, 'explore_blog.html', {'blog': blog})
-
 @login_required(login_url='/login/')
 def blogs(request):
     blogs = Blog.objects.filter(user_id=request.user.id).order_by('-created_at')
     return render(request, 'blogs_list.html', {'blogs': blogs})
 
-@login_required(login_url='/login/')
+# @login_required(login_url='/login/')
 def single_blog(request, pk):
     blog = Blog.objects.get(pk=pk)
     comments = Comment.objects.all()
@@ -41,7 +37,6 @@ def single_blog(request, pk):
             new_comment = comment_form.save(commit=False)
             new_comment.blog = blog
             new_comment.save()
-            # return redirect('', pk=blog.pk)
     else:
         comment_form = CommentForm()
     return render(request, 'blog_post.html', {'blog': blog, 'comments': comments, 'new_comment': new_comment, 'comment_form': comment_form})
@@ -50,8 +45,6 @@ def single_blog(request, pk):
 def create_blog(request):
     if request.method == 'POST':
         form = BlogForm(request.POST)
-        # if request.user.is_authenticated:
-            # form['user'] = User.objects.get(pk=request.user.id)
         form.instance.user = request.user
         if form.is_valid():
             blog = form.save()
@@ -113,7 +106,17 @@ def signup(request):
             return redirect('home')
         else:
             messages.success(request, "Registration unsuccessful." )
-
+            return redirect('signup')
     else:
         form = UserCreationForm()
         return render(request, 'signup.html', {'form': form})
+
+@login_required(login_url='/login/')
+def delete_comment(request, pk, comment_pk):
+    comment = Comment.objects.get(blog_id=pk, id=comment_pk)
+    if comment.user_id == request.user.id:
+        comment.delete()
+    # print(comment, request.user, 'REQUEST')
+    return redirect(f'/blogs/{pk}')
+
+

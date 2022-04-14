@@ -5,11 +5,13 @@
     <h2>Login</h2>
     <form method="POST" action="{% url 'welcome' %}">
         {% csrf_token %}
-        <label for="username">username</label>
-        <input type="text" name="username">
-        <label for="password">password</label>
-        <input type="password" name="password">
-        <button type="submit">Login</button>
+        <div class="flex">
+            <label for="username">Username</label>
+            <input type="text" name="username">
+            <label for="password">Password</label>
+            <input type="password" name="password">
+            <button type="submit" class="btn btn-success btn-sm">Login</button>
+        </div>
     </form>
 </div>
 

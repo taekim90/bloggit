@@ -28,6 +28,12 @@
                 <p>
                     {{ comment.user }} - {{ comment.created_at }}
                 </p>
+                {% if user.is_authenticated %}
+                {% if user.id == comment.user.id %}    
+                    <!-- <a href="edit_comment">Edit</a> -->
+                    <a href="delete_comment/{{ comment.id }}">Delete</a>
+                {% endif %}
+            {% endif %}
             {% endfor %}
         </ul>
     {% endif %}
@@ -41,10 +47,10 @@
         <input id="comment" type="text" name="comment"> -->
         <button type="submit">Add Comment</button>
     </form>
-    <!-- <a href="comment">Add Comment</a> -->
+ 
     <script>
         let name = "{{ user.id }}"
-        // let name = "{{ user.username }}";;
+
         document.getElementById("user").value = name;
     </script>
 {% endif %}
