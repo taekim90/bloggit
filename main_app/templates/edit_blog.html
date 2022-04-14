@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+    <div>
+        <h2>Edit Blog</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form.as_p }}
+                <button type="submit">Post</button>
+            </form>
+    </div>
+
+    <script>
+        let name = "{{ user.id }}"
+        // let name = "{{ user.username }}";;
+        document.getElementById("user").value = name;
+    </script>
+{% else %}
+Please log in
+{% endif %}
+
+{% endblock %}

@@ -3,7 +3,7 @@
 
 {% if user.is_authenticated %}
     <div>
-        <h2>{{ header }}</h2>
+        <h2>Create New Blog</h2>
             <form method="POST">
                 {% csrf_token %}
                 {{ form.media }}

@@ -47,7 +47,7 @@ def create_blog(request):
     else:
         form = BlogForm()
     context = {'form': form, 'header': 'Add New Blog', 'user': request.user}
-    return render(request, 'blog_form.html', context)
+    return render(request, 'create_blog.html', context)
 
 @login_required(login_url='/login/')
 def edit_blog(request, pk):
@@ -59,7 +59,7 @@ def edit_blog(request, pk):
             return redirect('blogs')
     else:
         form = BlogForm(instance=blog)
-    return render(request, 'blog_form.html', {'form': form})
+    return render(request, 'edit_blog.html', {'form': form})
 
 @login_required(login_url='/login/')
 def delete_blog(request, pk):

@@ -10,7 +10,7 @@
             <li>
                 <a href="{% url 'blogs' %}">{{ blog.title }}</a> - {{ blog.user.username }}
                 <div>
-                    {{ blog.content|slice:":255"|safe }}
+                    {{ blog.content|safe }}
                 </div>          
                 Created : {{ blog.created_at }}
                 {% if user.is_authenticated %}
