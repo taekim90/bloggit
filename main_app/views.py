@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from .models import Blog
 from .models import Comment
 from .forms import BlogForm
+from .forms import CommentForm
 
 # Create your views here
 
@@ -33,7 +34,17 @@ def blogs(request):
 def single_blog(request, pk):
     blog = Blog.objects.get(pk=pk)
     comments = Comment.objects.all()
-    return render(request, 'blog_post.html', {'blog': blog, 'comments': comments})
+    new_comment = None
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.blog = blog
+            new_comment.save()
+            # return redirect('', pk=blog.pk)
+    else:
+        comment_form = CommentForm()
+    return render(request, 'blog_post.html', {'blog': blog, 'comments': comments, 'new_comment': new_comment, 'comment_form': comment_form})
 
 @login_required(login_url='/login/')
 def create_blog(request):

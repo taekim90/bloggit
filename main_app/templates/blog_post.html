@@ -16,18 +16,9 @@
 
     <h4>Comments</h4>
 
-    {% if user.is_authenticated %}
-        <form method="POST">
-            <label for="comment">Comment: </label>
-            <input id="comment" type="text" name="comment">
-            <button type="submit">Post</button>
-        </form>
-        <!-- <a href="comment">Add Comment</a> -->
-    {% endif %}
-
     {% if not blog.comments.all %}
-        No Comments Yet
-        <a href="#">Add Comment</a>
+        <p>No Comments Yet</p>
+        <!-- <a href="#">Add Comment</a> -->
     {% else %}
         <ul>
             {% for comment in blog.comments.all %}
@@ -35,12 +26,29 @@
                     {{ comment.comment}}
                 </div>
                 <p>
-                    {{ comment.name }} - {{ comment.created_at }}
+                    {{ comment.user }} - {{ comment.created_at }}
                 </p>
             {% endfor %}
         </ul>
     {% endif %}
 
-
+    <h4>Add Comment</h4>
+    {% if user.is_authenticated %}
+    <form method="POST">
+        {{ comment_form.as_p }}
+        {% csrf_token%}
+        <!-- <label for="comment">  </label>
+        <input id="comment" type="text" name="comment"> -->
+        <button type="submit">Add Comment</button>
+    </form>
+    <!-- <a href="comment">Add Comment</a> -->
+    <script>
+        let name = "{{ user.id }}"
+        // let name = "{{ user.username }}";;
+        document.getElementById("user").value = name;
+    </script>
+{% endif %}
 </div>
+
+
 {% endblock %}
