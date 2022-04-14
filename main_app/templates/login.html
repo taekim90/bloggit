@@ -3,13 +3,13 @@
 
 <div>
     <h2>Login</h2>
-    <form method="POST" action="{% url 'profile' %}">
+    <form method="POST" action="{% url 'welcome' %}">
         {% csrf_token %}
         <label for="username">username</label>
         <input type="text" name="username">
         <label for="password">password</label>
         <input type="password" name="password">
-        <button type="submit">Save</button>
+        <button type="submit">Login</button>
     </form>
 </div>
 

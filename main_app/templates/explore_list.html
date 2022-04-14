@@ -9,9 +9,11 @@
         {% for blog in blogs %}
             <li>
                 {{ blog.user.username }},
-                {{ blog.title }},
+                <a href="{{ blog.id }}">{{ blog.title }}</a><br/>          
                 {{ blog.content }}
                 {{ blog.created_at }}
+                <a href="{{ blog.id }}/edit">Edit</a>
+                <a href="{{ blog.id }}/delete">X</a>
             </li>
         {% endfor %}
     </ul>

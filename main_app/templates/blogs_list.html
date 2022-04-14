@@ -8,12 +8,9 @@
     <ul>
         {% for blog in blogs %}
             <h4>
-                {{ blog.user.username }} - 
-                {{ blog.title }} -
-                <a href="{{ blog.id }}">
-                    {{ blog.title }} -
-                </a>
-                {{ blog.content }} - 
+                <!-- {{ blog.user.username }} -  -->
+                <a href="{{ blog.id }}">{{ blog.title }}</a><br/>
+                {{ blog.content }}<br/> 
                 {{ blog.created_at }}
                 <a href="{{ blog.id }}/edit">Edit</a>
                 <a href="{{ blog.id }}/delete">X</a>

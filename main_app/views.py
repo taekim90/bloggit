@@ -2,43 +2,50 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-# from django.contrib import messages
+from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
+# from django.views.generic import ListView, DetailView
+from django.contrib.auth.models import User
+
 
 from .models import Blog
+from .models import Comment
 from .create_blog import BlogForm
 # from .create_user_form import NewUserForm
 
-
-# Create your views here.
-# def home(request):
-#     # return HttpResponse('<h1>Home Page</h1>')
-#     # return render(request, point to 'home.html', pass in a context dictionary)
-#     return render(request, 'home.html', {})
+# Create your views here
 
 def home(request):
     return render(request, 'home.html')
 
+# def explore(request):
+#     blogs = Blog.objects.all()
+#     return render(request, 'explore_list.html', {'blogs': blogs})
 def explore(request):
     blogs = Blog.objects.all()
     return render(request, 'explore_list.html', {'blogs': blogs})
 
+def explore_blog(request, pk):
+    blog = Blog.objects.get(pk=pk)
+    return render(request, 'explore_blog.html', {'blog': blog})
+
 @login_required(login_url='/login/')
 def blogs(request):
-    # print('Blog Page', Blog.objects.all())
-    # return HttpResponse('<h1>Blog Page</h1>')
     blogs = Blog.objects.filter(user_id=request.user.id)
     return render(request, 'blogs_list.html', {'blogs': blogs})
 
 @login_required(login_url='/login/')
-def single_blog(request):
-    blog = Blog.objects.filter(blog_id=request.blog.id)
-    return render(request, 'blog_post.html', {'blog': blog})
+def single_blog(request, pk):
+    blog = Blog.objects.get(pk=pk)
+    comments = Comment.objects.all()
+    return render(request, 'blog_post.html', {'blog': blog, 'comments': comments})
 
 @login_required(login_url='/login/')
 def create_blog(request):
     if request.method == 'POST':
         form = BlogForm(request.POST)
+        # if request.user.is_authenticated:
+            # form['user'] = User.objects.get(pk=request.user.id)
         form.instance.user = request.user
         if form.is_valid():
             blog = form.save()
@@ -62,7 +69,6 @@ def edit_blog(request, pk):
 
 @login_required(login_url='/login/')
 def delete_blog(request, pk):
-    # Blog.objects.get(pk=pk).delete()
     blog = Blog.objects.get(pk=pk)
     if blog.user_id == request.user.id:
         blog.delete()
@@ -72,15 +78,20 @@ def delete_blog(request, pk):
 def login_page(request):
     return render(request, 'login.html')
 
-def profile_show(request):
+def welcome(request):
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request,user)
-        return render(request, 'profile.html')
+        return render(request, 'welcome.html')
     else:
         return HttpResponse('<h1>Something went wrong with login</h1>')
+        # print('Something went wrong with login')
+        # return render(request, 'login.html')
+
+def profile_page(request):
+    return render(request, 'profile.html')
 
 def logout_view(request):
     logout(request)
@@ -107,7 +118,11 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
+            messages.success(request, "Registration successful." )
             return redirect('home')
+        else:
+            messages.success(request, "Registration unsuccessful." )
+
     else:
         form = UserCreationForm()
         return render(request, 'signup.html', {'form': form})

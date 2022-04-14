@@ -2,10 +2,13 @@
 {% block content %}
 <div>
     <h1>{{ header }}</h1>
+    current user: {{ user.id }}
+    blog's owner: {{ blog.user.id }}
     <h2>
         {{ blog.title }}
     </h2>
-    <a href="create">Add Comment</a>
+    <h4>By {{ blog.user }}</h3>
+    <a href="comment">Add Comment</a>
     <ul>
         {% for comment in comments %}
             <h4>
