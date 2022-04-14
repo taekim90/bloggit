@@ -8,7 +8,8 @@
             <li>
                 <a href="{{ blog.id }}">{{ blog.title }}</a>
                 <div>
-                    {{ blog.content|slice:":255"|safe }}
+                    <!-- {{ blog.content|slice:":255"|safe }} -->
+                    {{ blog.content|safe }}
                 </div>
                 Created : {{ blog.created_at }} 
                 <a href="{{ blog.id }}/edit">Edit</a>

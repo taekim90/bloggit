@@ -14,11 +14,9 @@ from ckeditor.fields import RichTextField
 class Blog(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blogs', default=None)
     title = models.CharField(max_length=100)
-    # content = models.TextField()
     content = RichTextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     last_updated_on = models.DateTimeField(auto_now=True)
-    # image = models.ImageField(null=True, blank=True, upload_to="images/")
 
     def __str__(self):
         return self.title
