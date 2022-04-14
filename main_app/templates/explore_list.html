@@ -2,20 +2,25 @@
 {% block content %}
 <div>
     <h2>
-        Blog List
-
+        All Bloggs
     </h2>
     <ul>
         {% for blog in blogs %}
             <li>
                 {{ blog.user.username }},
-                <a href="{{ blog.id }}">{{ blog.title }}</a><br/>          
+                <a href="{% url 'blogs' %}">{{ blog.title }}</a><br/>          
                 {{ blog.content }}
                 {{ blog.created_at }}
-                <a href="{{ blog.id }}/edit">Edit</a>
-                <a href="{{ blog.id }}/delete">X</a>
+
+                {% if user.is_authenticated %}
+                    {% if user.id == blog.user.id %}    
+                        <a href="{{ blog.id }}/edit">Edit</a>
+                        <a href="{{ blog.id }}/delete">Delete</a>
+                    {% endif %}
+                {% endif %}
             </li>
         {% endfor %}
     </ul>
 </div>
 {% endblock %}
+

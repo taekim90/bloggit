@@ -4,30 +4,24 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-# from django.views.generic import ListView, DetailView
 from django.contrib.auth.models import User
-
 
 from .models import Blog
 from .models import Comment
 from .create_blog import BlogForm
-# from .create_user_form import NewUserForm
 
 # Create your views here
 
 def home(request):
     return render(request, 'home.html')
 
-# def explore(request):
-#     blogs = Blog.objects.all()
-#     return render(request, 'explore_list.html', {'blogs': blogs})
 def explore(request):
     blogs = Blog.objects.all()
     return render(request, 'explore_list.html', {'blogs': blogs})
 
-def explore_blog(request, pk):
-    blog = Blog.objects.get(pk=pk)
-    return render(request, 'explore_blog.html', {'blog': blog})
+# def explore_blog(request, pk):
+#     blog = Blog.objects.get(pk=pk)
+#     return render(request, 'explore_blog.html', {'blog': blog})
 
 @login_required(login_url='/login/')
 def blogs(request):
@@ -96,21 +90,6 @@ def profile_page(request):
 def logout_view(request):
     logout(request)
     return redirect('home')
-
-# def register_page(request):
-#     return render(request, 'register.html')
-
-# def register_request(request):
-# 	if request.method == "POST":
-# 		form = NewUserForm(request.POST)
-# 		if form.is_valid():
-# 			user = form.save()
-# 			login(request, user)
-# 			messages.success(request, "Registration successful." )
-# 			return redirect("/blogs")
-# 		messages.error(request, "Unsuccessful registration. Invalid information.")
-# 	form = NewUserForm()
-# 	return render (request=request, template_name="register.html", context={"register_form":form})
 
 def signup(request):
     if request.method == 'POST':
