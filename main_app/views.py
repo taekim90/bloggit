@@ -92,7 +92,7 @@ def welcome(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request,user)
-        return render(request, 'welcome.html')
+        return redirect('blogs')
     else:
         return HttpResponse('<h1>Something went wrong with login</h1>')
         # print('Something went wrong with login')

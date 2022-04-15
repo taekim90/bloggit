@@ -30,7 +30,6 @@ ___
 | / | Home Page
 | /signup | User registration page 
 | /login | User login page 
-| /welcome | User welcome page after login
 | /explore | Displays all blogs chronologically from all users
 | /blogs | Displays logged in user's blogs
 | /blogs/create | Create a blog
@@ -46,8 +45,7 @@ ___
 | GET | /register | Page to create a new user
 | POST | /register | Adds new user created to database
 | GET | /login | Login Page
-| POST | /login | Log in to user
-| GET | /welcome | Page loaded after login
+| POST | /welcome | Authenticate login information
 | GET | /explore | Page with blogs from all users displayed
 | GET | /blogs | Page with all blogs displayed
 | GET | /blogs/create | Page with template/form to create blog
