@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+    <div>
+        <h2>Edit Comment</h2>
+            <form method="POST">
+                {% csrf_token%}
+                {{ comment_form.as_p }}
+                <button type="submit" class="btn btn-success">Update Comment</button>
+            </form>
+    </div>
+
+    <script>
+        let name = "{{ user.id }}"
+        document.getElementById("user").value = name;
+    </script>
+{% else %}
+Please log in
+{% endif %}
+
+{% endblock %}

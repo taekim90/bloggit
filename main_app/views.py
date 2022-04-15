@@ -29,7 +29,7 @@ def blogs(request):
 # @login_required(login_url='/login/')
 def single_blog(request, pk):
     blog = Blog.objects.get(pk=pk)
-    comments = Comment.objects.all()
+    comments = Comment.objects.all().order_by('id')
     new_comment = None
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
@@ -119,4 +119,14 @@ def delete_comment(request, pk, comment_pk):
     # print(comment, request.user, 'REQUEST')
     return redirect(f'/blogs/{pk}')
 
-
+@login_required(login_url='/login/')
+def edit_comment(request, pk, comment_pk):
+    comment = Comment.objects.get(blog_id=pk, id=comment_pk)
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            comment = form.save()
+            return redirect(f'/blogs/{pk}')
+    else:
+        form = CommentForm(instance=comment)
+    return render(request, 'edit_comment.html', {'comment_form': form})

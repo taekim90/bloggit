@@ -24,6 +24,7 @@
                 <p>{{ comment.user }} - {{ comment.created_at }}
                     {% if user.is_authenticated %}
                         {% if user.id == comment.user.id %}    
+                            <a href="edit_comment/{{ comment.id }}" class="btn btn-warning btn-sm ">Edit</a>
                             <a href="delete_comment/{{ comment.id }}" class="btn btn-danger btn-sm ">Delete</a>
                         {% endif %}
                     {% endif %}
