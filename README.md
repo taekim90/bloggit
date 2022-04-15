@@ -66,8 +66,9 @@ ___
 ## Wireframes
 ![wireframe image](bloggit-wireframe.drawio.png)
 ___
-## Final Product Images
-![home page image](/)
+## Final Product Image
+<img src="bloggit.png" width="700">
+
 ___
 ## Tech Utilized
 - PostgreSQL
