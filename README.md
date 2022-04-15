@@ -27,28 +27,38 @@ ___
 ## URL Chart
 | Path | Purpose |
 | ------ | ---- |
-| / | Login Page
-| /register | Register page 
+| / | Home Page
+| /signup | User registration page 
+| /login | User login page 
+| /welcome | User welcome page after login
 | /explore | Displays all blogs chronologically from all users
-| /blogs | Displays user's blogs
+| /blogs | Displays logged in user's blogs
 | /blogs/create | Create a blog
-| /blogs/:id/edit | Edit / Delete user's blog 
+| /blogs/:id/ | View page for selected blog - access to blog edit page link / can delete blog / can add comments / access to comment edit page link / can delete comments
+| /blogs/:id/edit | Page to edit the selected blog 
+| /blogs/:id/edit_comment/:commment_id | Page to edit the selected comment
 
 
 ## Routing Chart
 | Method | Path | Purpose |
 | ------ | ---- | ------- |
-| GET | / | Login Page
-| POST | / | Log in to user from home page
+| GET | / | Home page
 | GET | /register | Page to create a new user
 | POST | /register | Adds new user created to database
+| GET | /login | Login Page
+| POST | /login | Log in to user
+| GET | /welcome | Page loaded after login
 | GET | /explore | Page with blogs from all users displayed
 | GET | /blogs | Page with all blogs displayed
 | GET | /blogs/create | Page with template/form to create blog
 | POST | /blogs/create | Create a new blog
-| GET | /blogs/:id | Page to edit blog
-| PUT | /blogs/:id | Edit a blog
-| Delete | /blogs/:id | Delete a blog
+| GET | /blogs/:id | Page with selected blog's info and comments
+| GET | /blogs/:id/edit | Page to edit blog
+| PUT | /blogs/:id/edit | Edit a blog
+| DELETE | /blogs/:id/delete | Delete a blog
+| GET | /blogs/:id/edit_comment/:comment_id | Page to edit a comment
+| PUT | /blogs/:id/edit_comment/:comment_id | Edit a comment
+| Delete | /blogs/:id/delete_comment/:comment_id | Delete a comment
 
 
 ## ERDs
@@ -69,11 +79,11 @@ ___
 ___
 
 ## MVP Checklist
-- [ ] Be able to create new users and save in the database
-- [ ] Be able to create new blogs that save in the database
-- [ ] Be able to edit and delete own blogs
-- [ ] Be able to comment on all blogs (user's own blogs and other users' blogs)
-- [ ] Be able to delete own comments
+- [X] Be able to create new users and save in the database
+- [X] Be able to create new blogs that save in the database
+- [X] Be able to edit and delete own blogs
+- [X] Be able to comment on all blogs (user's own blogs and other users' blogs)
+- [X] Be able to delete own comments
 ___
 
 ## Stetch Goals
