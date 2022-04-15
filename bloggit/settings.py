@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-=_58e8j$75=eqx9usp%ng0nvk*ca$wd_2(ex8$2fc=!@d6$f!1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app'] # Allow *.vercel.app
 
 
 # Application definition
@@ -85,10 +85,10 @@ WSGI_APPLICATION = 'bloggit.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bloggit',
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'bloggit',
+    # }
 }
 
 
