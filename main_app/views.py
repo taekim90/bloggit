@@ -26,7 +26,7 @@ def blogs(request):
     blogs = Blog.objects.filter(user_id=request.user.id).order_by('-created_at')
     return render(request, 'blogs_list.html', {'blogs': blogs})
 
-# @login_required(login_url='/login/')
+@login_required(login_url='/login/')
 def single_blog(request, pk):
     blog = Blog.objects.get(pk=pk)
     comments = Comment.objects.all().order_by('id')
@@ -121,14 +121,6 @@ def signup(request):
         return render(request, 'signup.html', {'form': form})
 
 @login_required(login_url='/login/')
-def delete_comment(request, pk, comment_pk):
-    comment = Comment.objects.get(blog_id=pk, id=comment_pk)
-    if comment.user_id == request.user.id:
-        comment.delete()
-    # print(comment, request.user, 'REQUEST')
-    return redirect(f'/blogs/{pk}')
-
-@login_required(login_url='/login/')
 def edit_comment(request, pk, comment_pk):
     comment = Comment.objects.get(blog_id=pk, id=comment_pk)
     if request.method == 'POST':
@@ -139,6 +131,13 @@ def edit_comment(request, pk, comment_pk):
     else:
         form = CommentForm(instance=comment)
     return render(request, 'edit_comment.html', {'comment_form': form})
+
+@login_required(login_url='/login/')
+def delete_comment(request, pk, comment_pk):
+    comment = Comment.objects.get(blog_id=pk, id=comment_pk)
+    if comment.user_id == request.user.id:
+        comment.delete()
+    return redirect(f'/blogs/{pk}')
 
 # @login_required(login_url='/login/')
 # def like(request, pk):
