@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse, reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-
 
 from .models import Blog
 from .models import Comment
@@ -31,6 +31,15 @@ def single_blog(request, pk):
     blog = Blog.objects.get(pk=pk)
     comments = Comment.objects.all().order_by('id')
     new_comment = None
+    # def get_context_data(self, **kwargs):
+    #     data = super(single_blog, self).get_context_data(**kwargs)
+    #     likes_connected = get_object_or_404(Blog, id=self.kwargs['pk'])
+    #     liked = False
+    #     if likes_connected.likes.filter(id=self.request.user.id).exists():
+    #         liked = True
+    #     data['number_of_likes'] = likes_connected.number_of_likes()
+    #     data['blog_is_liked'] = liked
+    #     return data
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
@@ -130,3 +139,13 @@ def edit_comment(request, pk, comment_pk):
     else:
         form = CommentForm(instance=comment)
     return render(request, 'edit_comment.html', {'comment_form': form})
+
+# @login_required(login_url='/login/')
+# def like(request, pk):
+#     blog = get_object_or_404(Blog, id=request.POST.get('blog_id'))
+#     if blog.likes.filter(id=request.user.id).exists():
+#         blog.likes.remove(request.user)
+#     else:
+#         blog.likes.add(request.user)
+#     # blog.likes.add(request.user)
+#     return HttpResponseRedirect(reverse('like_blog', args=[str(pk)]))

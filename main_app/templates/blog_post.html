@@ -13,6 +13,15 @@
         </div>
     {% endif %}
 
+    <!-- <form action="{% url 'blogpost_like' blog.pk %}" method="POST">
+        {% csrf_token %}
+        {% if blog_is_liked %}
+        <button type="submit" name="blog_id" value="{{ blog.id }}" class="btn btn-info btn-sm">Unlike</button>
+        {% else %}
+        <button type="submit" name="blog_id" value="{{ blog.id }}" class="btn btn-info btn-sm" >Like</button>
+        {% endif %}
+    </form>
+    <p>{{ number_of_likes }} Likes</p> -->
 
     <h3 class="top-space">Comments</h3>
     {% if not blog.comments.all %}
