@@ -2,20 +2,15 @@
 {% block content %}
 
 <div>
-    <h2>All Bloggs</h2>
+    <h2>Explore</h2>
     <div>
         {% for blog in blogs %}
-            <div class="border space">
-                <a href="/blogs/{{ blog.id }}" class="big-font" >{{ blog.title }}</a>
-                <div>{{ blog.content|safe }}</div>  
-                <div> - {{ blog.user.username }}</div>
-                <div>{{ blog.created_at }}</div>
-                {% if user.is_authenticated %}
-                    {% if user.id == blog.user.id %}    
-                        <a href="/blogs/{{ blog.id }}/edit" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="/blogs/{{ blog.id }}/delete" class="btn btn-danger btn-sm">Delete</a>
-                    {% endif %}
-                {% endif %}
+            <div class="card border-dark mb-3" style="max-width: 100%;">
+                <!-- <div class="card-header"><a href="/blogs/{{ blog.id }}" class="big-font" >{{ blog.title }}</a></div> -->
+                <div class="card-body">
+                    <h4 class="card-title"><a href="/blogs/{{ blog.id }}" class="white">{{ blog.title }}</a></h4>
+                    <p class="card-text">{{ blog.content|safe }}</p>
+                </div>
             </div>
         {% endfor %}
     </div>

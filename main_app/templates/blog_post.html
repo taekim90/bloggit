@@ -8,13 +8,13 @@
 
     {% if user.id == blog.user.id %}
         <div>
-            <a href="edit" class="btn btn-warning btn-sm">Edit</a>
-            <a href="delete" class="btn btn-danger btn-sm">Delete</a>
+            <a href="edit" class="btn btn-light btn-sm">Edit</a>
+            <a href="delete" class="btn btn-secondary btn-sm">Delete</a>
         </div>
     {% endif %}
 
 
-    <h3 class="top-space">Comments</h3>
+    <h3 class="top-space white">Comments</h3>
     {% if not blog.comments.all %}
         <p>No Comments Yet</p>
     {% else %}
@@ -24,8 +24,8 @@
                 <p>{{ comment.user }} - {{ comment.created_at }}
                     {% if user.is_authenticated %}
                         {% if user.id == comment.user.id %}    
-                            <a href="edit_comment/{{ comment.id }}" class="btn btn-warning btn-sm ">Edit</a>
-                            <a href="delete_comment/{{ comment.id }}" class="btn btn-danger btn-sm ">Delete</a>
+                            <a href="edit_comment/{{ comment.id }}" class="btn btn-light btn-sm ">Edit</a>
+                            <a href="delete_comment/{{ comment.id }}" class="btn btn-secondary btn-sm ">Delete</a>
                         {% endif %}
                     {% endif %}
                 </p>
@@ -33,7 +33,7 @@
         {% endfor %}
     {% endif %}
 
-    <h4>Add Comment</h4>
+    <!-- <h4>Add Comment</h4> -->
 
     {% if user.is_authenticated %}
         <form method="POST">

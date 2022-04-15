@@ -5,16 +5,21 @@
     <h2>My Blogs</h2>
     <div>
         {% for blog in blogs %}
-            <div class="border space">
-                <a href="{{ blog.id }}" class="big-font" >{{ blog.title }}</a>
-                <div>{{ blog.content|safe }}</div>  
-                <div>{{ blog.created_at }}</div>
-                {% if user.is_authenticated %}
-                    {% if user.id == blog.user.id %}    
-                        <a href="{{ blog.id }}/edit" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="{{ blog.id }}/delete" class="btn btn-danger btn-sm">Delete</a>
-                    {% endif %}
-                {% endif %}
+            <div class="card border-dark mb-3" style="max-width: 100%;">
+                <!-- <div class="card-header"><a href="/blogs/{{ blog.id }}" class="big-font" >{{ blog.title }}</a></div> -->
+                <div class="card-body">
+                    <h4 class="card-title"><a href="/blogs/{{ blog.id }}" class="white">{{ blog.title }}</a></h4>
+                    <p class="card-text">{{ blog.content|safe }}</p>
+                    <p class="card-text">{{ blog.created_at }}</p>
+                    <p>
+                        {% if user.is_authenticated %}
+                            {% if user.id == blog.user.id %}    
+                                <a href="{{ blog.id }}/edit" class="btn btn-light btn-sm">Edit</a>
+                                <a href="{{ blog.id }}/delete" class="btn btn-secondary btn-sm">Delete</a>
+                            {% endif %}
+                        {% endif %}
+                    </p>
+                </div>
             </div>
         {% endfor %}
     </div>

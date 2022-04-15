@@ -112,7 +112,7 @@ def signup(request):
             user = form.save()
             login(request, user)
             messages.success(request, "Registration successful." )
-            return redirect('home')
+            return redirect('blogs')
         else:
             messages.success(request, "Registration unsuccessful." )
             return redirect('signup')

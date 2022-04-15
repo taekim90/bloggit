@@ -6,16 +6,17 @@ body {
 
 h1, h2 {
     padding: 2rem 0rem 0rem 0rem;
+    color: white;
 }
 
 .flex {
-    /* display: flex; */
-    /* justify-content: center;
-    align-items: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .border {
-    border: 5px solid black;
+    /* border: 5px solid black; */
 }
 
 .space {
@@ -40,3 +41,20 @@ a {
     font-size: 2rem;
 }
 
+
+.ck-content .image-style-side {
+    max-width: 50%;
+    float: right;
+    margin-left: var(--ck-image-style-spacing);
+}
+
+.white {
+    color: white;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    /* display: flex;
+    justify-content: center; */
+}

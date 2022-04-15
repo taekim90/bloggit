@@ -5,7 +5,7 @@
     <h2>Login</h2>
     <form method="POST" action="{% url 'welcome' %}">
         {% csrf_token %}
-        <div class="flex">
+        <div>
             <label for="username">Username</label>
             <input type="text" name="username">
             <label for="password">Password</label>
