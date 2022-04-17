@@ -14,10 +14,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 import tempfile
 
-import django_heroku
-import dj_database_url
-from decouple import config
-
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,10 +27,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=_58e8j$75=eqx9usp%ng0nvk*ca$wd_2(ex8$2fc=!@d6$f!1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'bloggit-v1.herokuapp.com']
-
+# ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'bloggit-v1.herokuapp.com']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -94,6 +90,12 @@ DATABASES = {
     }
 }
 
+import django_heroku
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
+from decouple import config
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -131,9 +133,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-# STATICFILES_DIRS = (os.path.join( os.path.dirname( __file__ ), 'static' ),)
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'project_name/static')
-]
+STATICFILES_DIRS = (os.path.join( os.path.dirname( __file__ ), 'static' ),)
+# STATICFILES_DIRS = [os.path.join(BASE_DIR,'project_name/static')]
+
 STATICFILES_FINDERS = (
 'django.contrib.staticfiles.finders.FileSystemFinder',
 'django.contrib.staticfiles.finders.AppDirectoriesFinder',)
