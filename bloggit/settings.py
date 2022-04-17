@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-=_58e8j$75=eqx9usp%ng0nvk*ca$wd_2(ex8$2fc=!@d6$f!1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [] 
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'bloggit-v1.herokuapp.com']
 
 
 # Application definition
@@ -48,9 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'ckeditor',
-
 ]
-
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -133,15 +131,16 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = (os.path.join( os.path.dirname( __file__ ), 'static' ),)
-
+# STATICFILES_DIRS = (os.path.join( os.path.dirname( __file__ ), 'static' ),)
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'project_name/static')
+]
 STATICFILES_FINDERS = (
 'django.contrib.staticfiles.finders.FileSystemFinder',
 'django.contrib.staticfiles.finders.AppDirectoriesFinder',)
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-STATIC_ROOT = ''
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 # media needed to upload images
 MEDIA_URL = '/media/'
