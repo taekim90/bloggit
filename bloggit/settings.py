@@ -134,7 +134,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = (os.path.join( os.path.dirname( __file__ ), 'static' ),)
-# STATICFILES_DIRS = [os.path.join(BASE_DIR,'project_name/static')]
+# STATICFILES_DIRS = [os.path.join(BASE_DIR,'bloggit/static')]
 
 STATICFILES_FINDERS = (
 'django.contrib.staticfiles.finders.FileSystemFinder',
