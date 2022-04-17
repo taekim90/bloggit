@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=_58e8j$75=eqx9usp%ng0nvk*ca$wd_2(ex8$2fc=!@d6$f!1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'bloggit-v1.herokuapp.com']
 
@@ -145,6 +145,8 @@ STATIC_ROOT = os.path.join(BASE_DIR,'static')
 # media needed to upload images
 MEDIA_URL = '/media/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
 # CKEDITOR_UPLOAD_PATH = "uploads/"
 # CKEDITOR_IMAGE_BACKEND = "pillow"
 # CKEDITOR_IMAGE_MAX_WIDTH = 300
@@ -225,3 +227,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 django_heroku.settings(locals())
+
