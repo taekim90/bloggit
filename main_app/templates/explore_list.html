@@ -10,6 +10,8 @@
                 <div class="card-body">
                     <h4 class="card-title"><a href="/blogs/{{ blog.id }}" class="white">{{ blog.title }}</a></h4>
                     <p class="card-text">{{ blog.content|safe }}</p>
+                    <p>- {{ blog.user }}</p>
+
                 </div>
             </div>
         {% endfor %}

@@ -1,6 +1,7 @@
 # BloggIt
 
 ## Deployed Link
+https://bloggit-v1.herokuapp.com/
 
 ___
 ## About
@@ -95,6 +96,24 @@ ___
 
 ## Code Highlights
 ```javascript
+@login_required(login_url='/login/')
+def edit_comment(request, pk, comment_pk):
+    comment = Comment.objects.get(blog_id=pk, id=comment_pk)
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            comment = form.save()
+            return redirect(f'/blogs/{pk}')
+    else:
+        form = CommentForm(instance=comment)
+    return render(request, 'edit_comment.html', {'comment_form': form})
+
+@login_required(login_url='/login/')
+def delete_comment(request, pk, comment_pk):
+    comment = Comment.objects.get(blog_id=pk, id=comment_pk)
+    if comment.user_id == request.user.id:
+        comment.delete()
+    return redirect(f'/blogs/{pk}')
 ```
 ___
 
