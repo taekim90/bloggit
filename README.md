@@ -16,7 +16,6 @@ ___
 1. Fork and clone the repository
 2. Run `pip3 install -r requirements.txt` in your terminal to install dependencies
 3. Run `python3 manage.py runserver` in your terminal and go to your browser and type in "localhost:8000"
-4. ...
 
 ___
 ## User Stories
@@ -118,4 +117,5 @@ def delete_comment(request, pk, comment_pk):
 ___
 
 ## Resources
-- 
+- https://docs.djangoproject.com/en/4.0/
+- https://ckeditor.com/
